@@ -1,0 +1,1 @@
+# Sendgrid transactional email trigger
