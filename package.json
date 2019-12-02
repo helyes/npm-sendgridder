@@ -1,0 +1,38 @@
+{
+  "name": "@helyes/sendgridder",
+  "version": "0.1.0",
+  "description": "Sendgrid transactional email trigger",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "helyes <helyesa@gmail.com>",
+  "keywords": [
+    "Sendgrid",
+    "Transactional"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "test": "jest --config jestconfig.json",
+    "test:watch": "jest --config jestconfig.json --watch"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^10.17.0",
+    "dotenv": "^8.2.0",
+    "jest": "^24.9.0",
+    "nyc": "^14.1.1",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.2",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.2"
+  },
+  "files": [
+    "lib/**/*"
+  ]
+}

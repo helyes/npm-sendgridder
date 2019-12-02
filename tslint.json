@@ -1,0 +1,11 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "rules": { 
+    "arrow-parens": true,
+    "max-line-length": [true, 160],
+    "member-access": [true, "check-accessor"],
+    "variable-name": {
+      "options": ["allow-leading-underscore", "ban-keywords", "check-format", "require-const-for-all-caps"]
+    }
+  }
+}

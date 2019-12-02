@@ -1,0 +1,76 @@
+
+# Weekly digest
+curl --request POST   
+     --url https://api.sendgrid.com/v3/mail/send   
+     --header 'authorization: Bearer SG.{{$dotenv sendgrid_api_keyid}}.{{$dotenv sendgrid_api_key}}'   
+     --header 'content-type: application/json'   
+     --data '
+     {
+      "personalizations": [
+        {
+          "to": [{ "email": "andras@shiftcare.com", "name": "Andras" }],
+          "dynamic_template_data": {
+            "accountname": "Shiftcare test account",
+            "firstname": "Andras",
+            "stats" : {
+              "clientsserviced" : 12,
+              "shifts" : 45,
+              "hoursrostered" : 345,
+              "progressnotes" : 67,
+              "incidents" : 1,
+              "feedbacks" : 67,
+              "careers" : 67,
+              "careerstop" : [
+                {
+                  "name" : "Klara Dupont",
+                  "shifts" : 10
+                },
+                {
+                  "name" : "Ellis Lawson",
+                  "shifts" : 9
+                },
+                {
+                  "name" : "Herman Roberts",
+                  "shifts" : 8
+                }
+              ]
+            }
+          },
+          "subject": "Weekly digest"
+        }
+      ],
+      "from": { "email": "notifications@shiftcare.com", "name": "Shiftcare" },
+      "reply_to": { "email": "noreply@shiftcare.com", "name": "Shiftcare" },
+      "template_id": "{{$dotenv templateid_weeklydigest}}"
+      }
+     '
+
+
+
+###
+
+# Report ready Legacy report uploaded template
+curl --request POST   
+     --url https://api.sendgrid.com/v3/mail/send   
+     --header 'authorization: Bearer SG.{{$dotenv sendgrid_api_keyid}}.{{$dotenv sendgrid_api_key}}'
+     --header 'content-type: application/json'   
+     --data '
+     {
+      "personalizations": [
+        {
+          "to": [{ "email": "andras@shiftcare.com", "name": "Andras" }],
+          "dynamic_template_data": {
+            "firstName": "Andras",
+            "exportType": "Activity report",
+            "downloadLink": "https://s3-ap-southeast-2.amazonaws.com/shiftcare-playground/some.file.pdf"
+
+          },
+          "subject": "Hello, World!"
+        }
+      ],
+      "from": { "email": "notifications@shiftcare.com", "name": "John Doe" },
+      "reply_to": { "email": "noreply@shiftcare.com", "name": "John Doe" },
+      "template_id": "{{$dotenv templateid_reportuploaded}}"
+      }
+     '
+### 
