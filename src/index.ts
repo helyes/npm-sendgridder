@@ -7,6 +7,7 @@ export interface ISendgridderResponse {
   statusCode: number;
   status: string;
   data: string;
+  to: IEmailAddress;
 }
 
 export class Sendgridder {
@@ -64,7 +65,7 @@ export class Sendgridder {
         });
         response.on('end', () => {
           if (response.statusCode && response.statusCode < 400) {
-            resolve({statusCode: response.statusCode, status: "OK", data: responseData});
+            resolve({statusCode: response.statusCode, status: "OK", data: responseData, to});
           } else {
             reject(responseData);
           }
