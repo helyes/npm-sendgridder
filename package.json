@@ -1,6 +1,6 @@
 {
   "name": "@helyes/sendgridder",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Sendgrid transactional email trigger",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,6 +16,8 @@
     "lint": "tslint -p tsconfig.json",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
+    "run1": "ts-node src/__tests__/runner/Runner.ts Personalization.1.recipient.json",
+    "run2": "ts-node src/__tests__/runner/Runner.ts Personalization.2.recipients.json",
     "test": "jest --config jestconfig.json",
     "test:watch": "jest --config jestconfig.json --watch"
   },
@@ -27,6 +29,7 @@
     "nyc": "^14.1.1",
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
+    "ts-mockito": "^2.5.0",
     "ts-node": "^8.5.2",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",

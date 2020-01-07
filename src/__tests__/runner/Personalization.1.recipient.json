@@ -1,0 +1,35 @@
+[
+  {
+    "data": {
+      "accountname": "Test account [Runner 1]",
+      "firstname": "Andras",
+      "stats": {
+        "careers": 67,
+        "careerstop": [
+          {
+            "name": "Klara Dupont",
+            "shifts": 10
+          },
+          {
+            "name": "Ellis Lawson",
+            "shifts": 9
+          },
+          {
+            "name": "Herman Roberts",
+            "shifts": 8
+          }
+        ],
+        "clientsserviced": 12,
+        "feedbacks": 67,
+        "hoursrostered": 345,
+        "incidents": 1,
+        "progressnotes": 67,
+        "shifts": 45
+      }
+    },
+    "to": {
+      "email": "will be populated from .env",
+      "name": "John Doe"
+    }
+  }
+]

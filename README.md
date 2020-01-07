@@ -1,5 +1,3 @@
 # Sendgrid transactional email trigger
 
-See example for usage.
-
-Do not 
+See `src/__tests__/runner/Runner.ts` for usage.

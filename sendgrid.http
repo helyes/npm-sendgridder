@@ -8,9 +8,9 @@ curl --request POST
      {
       "personalizations": [
         {
-          "to": [{ "email": "andras@shiftcare.com", "name": "Andras" }],
+          "to": [{ "email": "{{$dotenv email_to_1}}", "name": "Andras" }],
           "dynamic_template_data": {
-            "accountname": "Shiftcare test account",
+            "accountname": "Test account [REST]",
             "firstname": "Andras",
             "stats" : {
               "clientsserviced" : 12,
@@ -35,16 +35,92 @@ curl --request POST
                 }
               ]
             }
-          },
-          "subject": "Weekly digest"
+          }
+          
         }
       ],
-      "from": { "email": "notifications@shiftcare.com", "name": "Shiftcare" },
-      "reply_to": { "email": "noreply@shiftcare.com", "name": "Shiftcare" },
+      "from": { "email": "{{$dotenv email_from}}", "name": "From Email" },
+      "reply_to": { "email": "{{$dotenv email_reply_to}}", "name": "Reply Email" },
       "template_id": "{{$dotenv templateid_weeklydigest}}"
       }
      '
 
+### 
+# Weekly digest 2 recipients
+curl --request POST   
+     --url https://api.sendgrid.com/v3/mail/send   
+     --header 'authorization: Bearer SG.{{$dotenv sendgrid_api_keyid}}.{{$dotenv sendgrid_api_key}}'   
+     --header 'content-type: application/json'   
+     --data '
+     {
+      "personalizations": [
+        {
+          "to": [{ "email": "{{$dotenv email_to_1}}", "name": "Andras" }],
+          "dynamic_template_data": {
+            "accountname": "Test account 1 [REST]",
+            "firstname": "Andras",
+            "stats" : {
+              "clientsserviced" : 12,
+              "shifts" : 45,
+              "hoursrostered" : 345,
+              "progressnotes" : 67,
+              "incidents" : 1,
+              "feedbacks" : 67,
+              "careers" : 67,
+              "careerstop" : [
+                {
+                  "name" : "Klara Dupont",
+                  "shifts" : 10
+                },
+                {
+                  "name" : "Ellis Lawson",
+                  "shifts" : 9
+                },
+                {
+                  "name" : "Herman Roberts",
+                  "shifts" : 8
+                }
+              ]
+            }
+          }
+        },
+        {
+          "to": [{ "email": "{{$dotenv email_to_2}}", "name": "Andras 2" }],
+          "dynamic_template_data": {
+            "accountname": "Test account 2 [REST]",
+            "firstname": "Andras 2",
+            "stats" : {
+              "clientsserviced" : 12,
+              "shifts" : 45,
+              "hoursrostered" : 345,
+              "progressnotes" : 67,
+              "incidents" : 1,
+              "feedbacks" : 67,
+              "careers" : 67,
+              "careerstop" : [
+                {
+                  "name" : "Klara Dupont",
+                  "shifts" : 10
+                },
+                {
+                  "name" : "Ellis Lawson",
+                  "shifts" : 9
+                },
+                {
+                  "name" : "Herman Roberts",
+                  "shifts" : 8
+                }
+              ]
+            }
+          }
+        }
+
+      ],
+      "from": { "email": "{{$dotenv email_from}}", "name": "From Email" },
+      "reply_to": { "email": "{{$dotenv email_reply_to}}", "name": "Reply Email" },
+      "template_id": "{{$dotenv templateid_weeklydigest}}"
+      }
+     '
 
 
 ###
@@ -58,18 +134,16 @@ curl --request POST
      {
       "personalizations": [
         {
-          "to": [{ "email": "andras@shiftcare.com", "name": "Andras" }],
+          "to": [{ "email": "{{$dotenv email_to_1}}", "name": "Andras" }],
           "dynamic_template_data": {
             "firstName": "Andras",
             "exportType": "Activity report",
-            "downloadLink": "https://s3-ap-southeast-2.amazonaws.com/shiftcare-playground/some.file.pdf"
-
-          },
-          "subject": "Hello, World!"
+            "downloadLink": "{{$dotenv download_link}}"
+          }
         }
       ],
-      "from": { "email": "notifications@shiftcare.com", "name": "John Doe" },
-      "reply_to": { "email": "noreply@shiftcare.com", "name": "John Doe" },
+      "from": { "email": "{{$dotenv email_from}}", "name": "John Doe" },
+      "reply_to": { "email": "{{$dotenv email_reply_to}}", "name": "John Doe" },
       "template_id": "{{$dotenv templateid_reportuploaded}}"
       }
      '

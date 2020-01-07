@@ -1,0 +1,68 @@
+[
+  {
+    "data": {
+      "accountname": "Test account 1 [Runner]",
+      "firstname": "Andras 1",
+      "stats": {
+        "careers": 11,
+        "careerstop": [
+          {
+            "name": "Klara Dupont 1",
+            "shifts": 21
+          },
+          {
+            "name": "Ellis Lawson 1",
+            "shifts": 31
+          },
+          {
+            "name": "Herman Roberts 1",
+            "shifts": 41
+          }
+        ],
+        "clientsserviced": 51,
+        "feedbacks": 61,
+        "hoursrostered": 71,
+        "incidents": 81,
+        "progressnotes": 91,
+        "shifts": 101
+      }
+    },
+    "to": {
+      "email": "will be populated from .env",
+      "name": "John Doe 1"
+    }
+  },
+  {
+    "data": {
+      "accountname": "Test account 2 [Runner]",
+      "firstname": "Andras 2",
+      "stats": {
+        "careers": 12,
+        "careerstop": [
+          {
+            "name": "Klara Dupont 2",
+            "shifts": 22
+          },
+          {
+            "name": "Ellis Lawson 2",
+            "shifts": 32
+          },
+          {
+            "name": "Herman Roberts 2",
+            "shifts": 42
+          }
+        ],
+        "clientsserviced": 52,
+        "feedbacks": 62,
+        "hoursrostered": 72,
+        "incidents": 82,
+        "progressnotes": 92,
+        "shifts": 102
+      }
+    },
+    "to": {
+      "email": "will be populated from .env",
+      "name": "John Doe 2"
+    }
+  }
+]

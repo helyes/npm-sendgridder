@@ -7,7 +7,6 @@ const config = {
   apiKeyId: process.env.sendgrid_api_keyid,
   apiKey: process.env.sendgrid_api_key,
   templateId: process.env.templateid_weeklydigest,
-  subject: 'Weekly newsletter',
   from: { email: 'from@email.com', name: 'From Name' },
   replyTo: { email: 'to@email.com', name: 'To Name' },
 };

@@ -5,7 +5,6 @@ export interface ISendgridConfig {
   from: IEmailAddress;
   replyTo: IEmailAddress;
   templateId: string;
-  subject: string;
 }
 
 export interface IEmailAddress {
@@ -13,14 +12,13 @@ export interface IEmailAddress {
   name?: string;
 }
 
+export interface IPersonalizationSendgrid {
+  to: IEmailAddress[];
+  dynamic_template_data: object;
+}
+
 export interface ITransactionalPayload {
-  personalizations: [
-    {
-      subject: string;
-      to: IEmailAddress[];
-      dynamic_template_data: object;
-    },
-  ];
+  personalizations: IPersonalizationSendgrid[];
   from: IEmailAddress;
   reply_to: IEmailAddress;
   template_id: string;

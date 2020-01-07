@@ -4,6 +4,7 @@
     "arrow-parens": true,
     "max-line-length": [true, 160],
     "member-access": [true, "check-accessor"],
+    "no-console": false,
     "variable-name": {
       "options": ["allow-leading-underscore", "ban-keywords", "check-format", "require-const-for-all-caps"]
     }
