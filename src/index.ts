@@ -9,19 +9,17 @@ export interface ISendgridderResponse {
   data: string;
   to: {
     count: number;
-    emailFirst: IEmailAddress,
-    emailLast?: IEmailAddress,
+    emailFirst: IEmailAddress;
+    emailLast?: IEmailAddress;
   };
 }
 
 export interface IPersonalization {
-  to : IEmailAddress;
-  data : object;
+  to: IEmailAddress;
+  data: object;
 }
 
-
 export class Sendgridder {
-    
   private readonly _authToken: string;
   private readonly _config: ISendgridConfig;
   private _debug: boolean = false;
@@ -34,18 +32,15 @@ export class Sendgridder {
   public set debug(value: boolean) {
     this._debug = value;
   }
-  
-  public buildPayload(personalizations: IPersonalization[]): ITransactionalPayload {
 
-    const templateData : IPersonalizationSendgrid[] = [];
+  public buildPayload(personalizations: IPersonalization[]): ITransactionalPayload {
+    const templateData: IPersonalizationSendgrid[] = [];
 
     for (const personalization of personalizations) {
-      templateData.push(
-        {
-          dynamic_template_data : personalization.data,
-          to: [personalization.to],
-        }
-      );
+      templateData.push({
+        dynamic_template_data: personalization.data,
+        to: [personalization.to],
+      });
     }
     if (this._debug) {
       console.log('Personalizations:', JSON.stringify(personalizations, null, 2));
@@ -79,7 +74,7 @@ export class Sendgridder {
       method: 'POST',
       path: parsedUrl.path,
     };
-    
+
     return new Promise<ISendgridderResponse>((resolve, reject) => {
       let responseData = '';
       const req = https.request(options, (response: IncomingMessage) => {
@@ -97,7 +92,7 @@ export class Sendgridder {
       });
 
       req.on('error', (error) => {
-        reject(error.message);
+        reject(error);
       });
 
       req.write(payload);
@@ -105,15 +100,14 @@ export class Sendgridder {
     });
   }
 
-  public buildDetailedResponse(personalization: IPersonalization[], responseRaw: IncomingMessage, responseData: string):  ISendgridderResponse {
-    const to = { 
+  public buildDetailedResponse(personalization: IPersonalization[], responseRaw: IncomingMessage, responseData: string): ISendgridderResponse {
+    const to = {
       count: personalization.length,
       emailFirst: personalization[0].to,
-      emailLast: personalization.length > 1 ? personalization[personalization.length -1].to : undefined,
-     };
-    return {statusCode: responseRaw.statusCode || 599, status: "OK", data: responseData, to};
+      emailLast: personalization.length > 1 ? personalization[personalization.length - 1].to : undefined,
+    };
+    return { statusCode: responseRaw.statusCode || 599, status: 'OK', data: responseData, to };
   }
-
 }
 
 // if (require.main === module) {

@@ -1,13 +1,12 @@
-
 import * as dotenv from 'dotenv';
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from 'fs';
+import * as path from 'path';
 import { Sendgridder } from '../../index';
 
 dotenv.config();
 
-if (process.argv.length !==3) {
-    throw Error(`Must pass personalization file name \x1b[31mrelative to ${path.dirname(__filename)}\x1b[0m`);
+if (process.argv.length !== 3) {
+  throw Error(`Must pass personalization file name \x1b[31mrelative to ${path.dirname(__filename)}\x1b[0m`);
 }
 const personalizationFilePath = path.join(path.dirname(__filename), process.argv[2]);
 console.log('Loading \x1b[36m%s\x1b[0m', personalizationFilePath);
@@ -15,8 +14,8 @@ const personalizationAsAstring = fs.readFileSync(personalizationFilePath).toStri
 const personalization = JSON.parse(personalizationAsAstring);
 
 // replace to emails from .env
-for(let i = 0; i < personalization.length; i++){
-  personalization[i].to.email =  process.env[`email_to_${i+1}`];
+for (let i = 0; i < personalization.length; i++) {
+  personalization[i].to.email = process.env[`email_to_${i + 1}`];
 }
 
 console.log('Parsed personalization content:\n \x1b[36m%s\x1b[0m', JSON.stringify(personalization, null, 2));
@@ -36,7 +35,7 @@ s.debug = true;
 async function send() {
   try {
     const result = await s.sendTransactional(personalization);
-    console.log("Result:", result); 
+    console.log('Result:', result);
   } catch (error) {
     console.error('\n\nError:', error);
   }
