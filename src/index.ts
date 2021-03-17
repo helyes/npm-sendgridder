@@ -19,6 +19,7 @@ export interface IPersonalization {
   data: object;
 }
 
+
 export class Sendgridder {
   private readonly _authToken: string;
   private readonly _config: ISendgridConfig;
@@ -33,7 +34,7 @@ export class Sendgridder {
     this._debug = value;
   }
 
-  public buildPayload(personalizations: IPersonalization[]): ITransactionalPayload {
+  public buildPayload(personalizations: IPersonalization[], config = {}): ITransactionalPayload {
     const templateData: IPersonalizationSendgrid[] = [];
 
     for (const personalization of personalizations) {
@@ -51,6 +52,7 @@ export class Sendgridder {
       personalizations: templateData,
       reply_to: this._config.replyTo,
       template_id: this._config.templateId,
+      ...config
     };
     if (this._debug) {
       console.log('Payload:', JSON.stringify(ret, null, 2));
@@ -58,11 +60,11 @@ export class Sendgridder {
     return ret;
   }
 
-  public sendTransactional(personalization: IPersonalization[]): Promise<ISendgridderResponse> {
+  public sendTransactional(personalization: IPersonalization[], config: any = {}): Promise<ISendgridderResponse> {
     if (this._debug) {
       console.log(`Received personalization: ${JSON.stringify(personalization, null, 2)},  \n\nconfig:${JSON.stringify(this._config, null, 2)}`);
     }
-    const payload = JSON.stringify(this.buildPayload(personalization));
+    const payload = JSON.stringify(this.buildPayload(personalization, config));
     const parsedUrl = url.parse(this._config.apiEndpoint);
     const options = {
       headers: {
@@ -108,6 +110,7 @@ export class Sendgridder {
     };
     return { statusCode: responseRaw.statusCode || 599, status: 'OK', data: responseData, to };
   }
+
 }
 
 // if (require.main === module) {
