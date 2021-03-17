@@ -23,3 +23,10 @@ export interface ITransactionalPayload {
   reply_to: IEmailAddress;
   template_id: string;
 }
+
+export interface IBounceResponse{
+  created: number,
+  email: string,
+  reason: string,
+  status: string
+}

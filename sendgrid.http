@@ -1,9 +1,9 @@
 
 # Weekly digest
-curl --request POST   
-     --url https://api.sendgrid.com/v3/mail/send   
-     --header 'authorization: Bearer SG.{{$dotenv sendgrid_api_keyid}}.{{$dotenv sendgrid_api_key}}'   
-     --header 'content-type: application/json'   
+curl --request POST
+     --url https://api.sendgrid.com/v3/mail/send
+     --header 'authorization: Bearer SG.{{$dotenv sendgrid_api_keyid}}.{{$dotenv sendgrid_api_key}}'
+     --header 'content-type: application/json'
      --data '
      {
       "personalizations": [
@@ -36,21 +36,22 @@ curl --request POST
               ]
             }
           }
-          
+
         }
       ],
+      "categories": ["digest"],
       "from": { "email": "{{$dotenv email_from}}", "name": "From Email" },
       "reply_to": { "email": "{{$dotenv email_reply_to}}", "name": "Reply Email" },
       "template_id": "{{$dotenv templateid_weeklydigest}}"
       }
      '
 
-### 
+###
 # Weekly digest 2 recipients
-curl --request POST   
-     --url https://api.sendgrid.com/v3/mail/send   
-     --header 'authorization: Bearer SG.{{$dotenv sendgrid_api_keyid}}.{{$dotenv sendgrid_api_key}}'   
-     --header 'content-type: application/json'   
+curl --request POST
+     --url https://api.sendgrid.com/v3/mail/send
+     --header 'authorization: Bearer SG.{{$dotenv sendgrid_api_keyid}}.{{$dotenv sendgrid_api_key}}'
+     --header 'content-type: application/json'
      --data '
      {
       "personalizations": [
@@ -126,10 +127,10 @@ curl --request POST
 ###
 
 # Report ready Legacy report uploaded template
-curl --request POST   
-     --url https://api.sendgrid.com/v3/mail/send   
+curl --request POST
+     --url https://api.sendgrid.com/v3/mail/send
      --header 'authorization: Bearer SG.{{$dotenv sendgrid_api_keyid}}.{{$dotenv sendgrid_api_key}}'
-     --header 'content-type: application/json'   
+     --header 'content-type: application/json'
      --data '
      {
       "personalizations": [
@@ -147,4 +148,4 @@ curl --request POST
       "template_id": "{{$dotenv templateid_reportuploaded}}"
       }
      '
-### 
+###
